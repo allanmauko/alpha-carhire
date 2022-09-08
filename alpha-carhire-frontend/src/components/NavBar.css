@@ -1,0 +1,11 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    color:green;
+    border-bottom: 2px solid blueviolet;
+
+}
+.nav li{
+    text-decoration: none;
+    list-style: none;
+}

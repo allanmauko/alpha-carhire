@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom"
+import {useState, useEffect} from "react"
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Home from "./components/Home";
+import NavBar from './components/NavBar';
 
 function App() {
+  // State lives here !!
+  const [cars, setCars] = useState([])
+
+  // function to fetch data
+  useEffect(() => {
+    const getCars = async () => {
+      const response = await fetch("http://localhost:9292/cars")
+      const data = await response.json()
+      setCars(data)
+    }
+  getCars()
+  
+  }, [])
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home cars={cars} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
     </div>
   );
 }
