@@ -4,6 +4,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Home from "./components/Home";
 import NavBar from './components/NavBar';
+import Form from "./components/Form";
 
 function App() {
   // State lives here !!
@@ -12,7 +13,7 @@ function App() {
   // function to fetch data
   useEffect(() => {
     const getCars = async () => {
-      const response = await fetch("http://localhost:9292/cars")
+      const response = await fetch("https://alpha-car-backend.herokuapp.com/cars")
       const data = await response.json()
       setCars(data)
     }
@@ -21,12 +22,13 @@ function App() {
   }, [])
   
   return (
-    <div className="App">
+    <div className="App bg-gray-300">
       <NavBar />
       <Routes>
         <Route path="/" element={<Home cars={cars} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
     </div>
   );
